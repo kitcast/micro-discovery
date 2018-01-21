@@ -1,0 +1,12 @@
+{
+  "name": "weather-service",
+  "version": "0.0.0",
+  "description": "Example micro-service",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "micro": "^9.1.0"
+  }
+}
