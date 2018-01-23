@@ -1,4 +1,4 @@
-# 🛰 Lightweight service discovery for the modern micro-services world
+# 🛰 Lightweight service discovery
 
 [![NPM Version](https://img.shields.io/npm/v/micro-discovery.svg?style=flat-square)](https://www.npmjs.com/package/micro-discovery)
 [![node](https://img.shields.io/node/v/micro-discovery.svg?style=flat-square)](https://www.npmjs.com/package/micro-discovery)
