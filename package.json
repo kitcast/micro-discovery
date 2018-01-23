@@ -1,7 +1,7 @@
 {
   "name": "micro-discovery",
-  "description": "",
-  "version": "0.0.0",
+  "description": "🛰 Lightweight service discovery for the modern micro-services world",
+  "version": "0.0.1",
   "author": "Vitaly Domnikov <vitaly@kitcast.tv>",
   "license": "MIT",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "url": "git@github.com:kitcast/micro-discovery.git"
   },
   "engines": {
-    "node": ">=6.11.3"
+    "node": ">=8.9.0"
   },
   "dependencies": {
     "http-assert": "^1.3.0",

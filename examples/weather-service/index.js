@@ -10,6 +10,5 @@ module.exports = async (req, res) => {
 
   const serviceInfo = await locate('media')
   console.log('media-service info', serviceInfo)
-
   return { weather: '☀️' }
 }
