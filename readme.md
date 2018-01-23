@@ -73,7 +73,7 @@ module.exports = registry({
 Basic microservice
 
 ```js
-const discovery = require('../..')
+const discovery = require('micro-discovery')
 
 const { authorize, config, locate } = discovery('https://your-registry.now.sh', 'weather-secret-token')
 
