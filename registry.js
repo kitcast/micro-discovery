@@ -5,15 +5,11 @@ const { sign, decode, verify, makeKeypair } = require('tilde-token')
 module.exports = ({ services = [], config = {}, ttl = 60 * 5 }) => {
   const serviceArray = services.map((service) => ({
     endpoint: '',
+    config: {},
     apiKey: createHash('sha256').update(
       makeKeypair(service.secret).publicKey
     ).digest().toString('base64').replace(/=/g, ''),
     ...service
-  }))
-  const configArray = Object.entries(config || {}).map(([key, value]) => ({
-    key,
-    value: value.value ? value.value : value,
-    acl: value.acl
   }))
   return (req, res) => {
     assert(req.headers.authorization && req.headers.authorization.startsWith('Bearer '), 400, 'Authorization requred')
@@ -35,15 +31,15 @@ module.exports = ({ services = [], config = {}, ttl = 60 * 5 }) => {
         endpoint: service.endpoint,
         token: sign({ expires, caller: caller.name }, service.secret)
       }))
-    const configuration = configArray
-      .filter((config) => !config.acl || config.acl.includes(caller.name))
-      .reduce((acc, config) => ({ ...acc, [config.key]: config.value }), {})
     return {
       ok: true,
       data: {
         expires,
         services,
-        configuration
+        configuration: {
+          ...config,
+          ...caller.config
+        }
       }
     }
   }

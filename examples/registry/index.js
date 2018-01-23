@@ -6,7 +6,10 @@ module.exports = registry({
       name: 'weather',
       secret: 'weather-secret-token',
       endpoint: 'http://localhost:3000',
-      acl: ['ghost']
+      acl: ['ghost'],
+      config: {
+        weather_apikey: 'ywZOe238yXc4URp'
+      }
     },
     {
       name: 'media',
@@ -16,24 +19,16 @@ module.exports = registry({
     },
     {
       name: 'ghost',
-      secret: 'ghost-secret-token'
+      secret: 'ghost-secret-token',
+      config: {
+        db_connection_string: 'redis://212.2.32.2:1234',
+        stripe_apikey: 'sk_test_dfe7v6gfJvad23rfggfdE345'
+      }
     }
   ],
   config: {
     statsd_port: 8125,
     statsd_host: 'statsd.example.com',
-    statsd_prefix: '88b9e226-aaea-49cf-ab8034b05552.777',
-    weather_apikey: {
-      value: 'ywZOe238yXc4URp',
-      acl: ['weather']
-    },
-    db_connection_string: {
-      value: 'redis://212.2.32.2:1234',
-      acl: ['ghost']
-    },
-    stripe_apikey: {
-      value: 'sk_test_dfe7v6gfJvad23rfggfdE345',
-      acl: ['ghost']
-    }
+    statsd_prefix: '88b9e226-aaea-49cf-ab8034b05552.777'
   }
 })
