@@ -25,7 +25,7 @@ module.exports = (url, secret) => {
     }
     return fetch(url, { headers: { 'Authorization': `Bearer ${acessToken}` } })
       .then((res) => res.json())
-      .then(({ ok, data }) => {
+      .then(({ data = {} }) => {
         setup = data
         return setup
       })

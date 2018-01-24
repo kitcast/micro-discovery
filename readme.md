@@ -69,7 +69,7 @@ module.exports = registry({
 })
 ```
 
-#### Basic microservice
+#### Basic weather microservice
 
 ```js
 const discovery = require('micro-discovery')
@@ -92,6 +92,8 @@ module.exports = async (req, res) => {
   //  headers: { Authorization: `Bearer ${serviceInfo.token}`}
   // })
 
-  return { weather: '☀️' }
+  return { 
+    weather: '☀️' 
+  }
 }
 ```
