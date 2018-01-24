@@ -5,16 +5,16 @@
 [![Build Status](https://img.shields.io/travis/kitcast/micro-discovery.svg?branch=master&style=flat-square)](https://travis-ci.org/kitcast/micro-discovery)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-*🚧 Work in progress*
+🚧 *Work in progress*
 
-Place where old-school `Service Registry` meets crypto.
+The place where old-school `Service Registry` meets crypto.
 
 ## Installation
 
 Install from NPM:
 
 ```js
-$ npm install micro-discovery --save
+$ npm i micro-discovery -S
 ```
 
 For `yarn` fans:
@@ -26,12 +26,11 @@ $ yarn add micro-discovery
 
 ## Examples
 
-Following examples designed as simple [`Micro`](https://github.com/zeit/micro) handlers. If you don't familar with `Micro` - you definetelly must try theese goodness.
+The following examples are designed as simple [`Micro`](https://github.com/zeit/micro) handlers. If you aren't familar with `Micro` - you definitely must try this goodness.
 
-Basic service registry includes node config, secret keys, and access control list.
+#### This basic service registry includes node config, secret keys, and an access control list.
 
 ```js
-
 const registry = require('micro-discovery/registry')
 
 module.exports = registry({
@@ -70,7 +69,7 @@ module.exports = registry({
 })
 ```
 
-Basic microservice
+#### Basic microservice
 
 ```js
 const discovery = require('micro-discovery')
