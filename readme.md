@@ -13,13 +13,13 @@ The place where old-school `Service Registry` meets crypto.
 
 Install from NPM:
 
-```js
+```bash
 $ npm i micro-discovery -S
 ```
 
 For `yarn` fans:
 
-```js
+```bash
 $ yarn add micro-discovery
 ```
 
