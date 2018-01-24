@@ -1,0 +1,12 @@
+{
+  "name": "example-registry",
+  "version": "0.0.0",
+  "description": "Example registry service",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro -p 4000"
+  },
+  "dependencies": {
+    "micro": "^9.1.0"
+  }
+}
