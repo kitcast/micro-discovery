@@ -2,15 +2,11 @@ const assert = require('http-assert')
 const fetch = require('node-fetch')
 const { createHash } = require('crypto')
 const { verifier, sign, makeKeypair } = require('tilde-token')
+const { now, isExpired } = require('./utils')
 
-const now = () => Math.floor(new Date().getTime() / 1000)
-
-module.exports = (url, secret) => {
+module.exports = (url, secret, ttl = 60) => {
   const { publicKey } = makeKeypair(secret)
-  const acessToken = sign(
-    createHash('sha256').update(publicKey).digest().toString('base64').replace(/=/g, ''),
-    secret
-  )
+  const identity = createHash('sha256').update(publicKey).digest().toString('base64').replace(/=/g, '')
   const verifyToken = verifier(publicKey)
 
   let setup = {
@@ -20,13 +16,14 @@ module.exports = (url, secret) => {
   }
 
   function load () {
-    if ((setup.expires - 5) > now()) {
+    if (!isExpired(setup.expires)) {
       return Promise.resolve(setup)
     }
-    return fetch(url, { headers: { 'Authorization': `Bearer ${acessToken}` } })
+    const token = sign({ caller: identity, expires: now() + ttl }, secret)
+    return fetch(url, { headers: { 'Authorization': `Bearer ${token}` } })
       .then((res) => res.json())
-      .then(({ data = {} }) => {
-        setup = data
+      .then(({ data }) => {
+        setup = data || {}
         return setup
       })
   }
@@ -37,8 +34,8 @@ module.exports = (url, secret) => {
       assert(authorization && authorization.startsWith('Bearer '), 400, 'Authorization requred')
       const token = authorization.slice(7)
       const { ok, data } = verifyToken(token)
-      assert(ok && data, 403, 'Bad, bad token')
-      data.expires && assert(parseInt(data.expires) > now(), 403, 'Expired token')
+      assert(ok && data, 403, 'Bad token')
+      assert(!isExpired(data.expires), 403, 'Expired token')
       return data
     },
     config: () => load().then(({ configuration }) => configuration),
