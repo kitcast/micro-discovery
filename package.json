@@ -1,7 +1,7 @@
 {
   "name": "micro-discovery",
   "description": "🛰 Lightweight service discovery for the modern micro-services world",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Vitaly Domnikov <vitaly@kitcast.tv>",
   "license": "MIT",
   "main": "index.js",
