@@ -3,7 +3,7 @@ const { createHash } = require('crypto')
 const { sign, safeDecode, verify, makeKeypair } = require('tilde-token')
 const { now, isExpired } = require('./utils')
 
-module.exports = ({ services = [], config = {}, ttl = 60 * 5 }) => {
+module.exports = ({ services = [], config = {}, ttl = 60 }) => {
   const serviceArray = services.map((service) => ({
     endpoint: '',
     config: {},
